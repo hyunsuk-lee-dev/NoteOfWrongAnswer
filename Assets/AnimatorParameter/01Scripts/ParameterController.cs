@@ -3,55 +3,46 @@ using System.Collections;
 using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ParameterController : MonoBehaviour
 {
     [SerializeField]
     private ParameterChanger parameterChanger;
-    [SerializeField]
-    private bool isAnimator;
 
-    private void Start()
+    private void Awake()
     {
         Deactivate();
     }
-
-    [Button]
+    
+    // 파라미터가 바뀌면 왼쪽으로 움직이는 애니메이션이 실행된다.
     private void ChangeParameter()
     {
         parameterChanger.ChangeDirectionParameter(parameterChanger.leftDirection);
-        parameterChanger.LogParameter();
     }
 
-    [Button]
     private void Activate()
     {
-        if (isAnimator)
-            parameterChanger.animator.enabled = true;
-        else
-            parameterChanger.gameObject.SetActive(true);
+        parameterChanger.gameObject.SetActive(true);
     }
 
-    [Button]
     private void Deactivate()
     {
-        if (isAnimator)
-            parameterChanger.animator.enabled = false;
-        else
-            parameterChanger.gameObject.SetActive(false);
+        parameterChanger.gameObject.SetActive(false);
     }
 
-    [Button]
-    private void ChangeAndActivate()
+    // 왼쪽으로 움직이지 않는다.
+    public void ChangeAndActivate()
     {
         ChangeParameter();
         Activate();
     }
 
-    [Button]
-    private void ActivateAndChange()
+    // 정상적으로 왼쪽으로 움직인다.
+    public void ActivateAndChange()
     {
         Activate();
         ChangeParameter();
     }
+
 }

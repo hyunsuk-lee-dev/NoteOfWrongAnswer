@@ -22,11 +22,13 @@ public class ParameterChanger : MonoBehaviour
     {
         animator.SetInteger(_directionParameter, direction);
     }
-
+    
     public string LogParameter()
     {
-        string log = $"Parameter : {animator.GetInteger(_directionParameter)}";
+        var log = $"Parameter : {animator.GetInteger(_directionParameter)}";
         Debug.Log(log);
         return log;
     }
+
+    public int GetParameter() => animator.GetInteger(_directionParameter);
 }
